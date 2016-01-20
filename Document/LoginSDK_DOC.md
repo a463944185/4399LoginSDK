@@ -12,7 +12,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;[1、导入库与资源](#导入库与资源)  
 &nbsp;&nbsp;&nbsp;&nbsp;[2、接入登录SDK](#接入登录SDK)  
 &nbsp;&nbsp;&nbsp;&nbsp;[3、接入服务端接口](#接入服务端接口)  
-&nbsp;&nbsp;&nbsp;&nbsp;[4、记录网页登录历史用户名](#记录网页登录历史用户名)  
 &nbsp;&nbsp;[附录一、登录SDK授权步骤](#附录一、登录SDK授权步骤)  
 &nbsp;&nbsp;[附录二、登录接口结果码对照表](#附录二、登录接口结果码对照表)  
 &nbsp;&nbsp;[附录三、自定义SDK界面风格](#附录三、自定义SDK界面风格)  
@@ -113,7 +112,7 @@ mOpeCenter.login(this, opeConfig, new OnLoginFinishedListener(){
         });
 ```
 
-#### **4.  记录网页登录历史用户名**
+#### **4. 记录网页登录历史用户名**
 
 ```java
         mOpeCenter.recordAccountName(String accountName);
@@ -178,7 +177,7 @@ web授权登录
 ###**附录一、登录SDK授权步骤**
 ---
 <p>
-<img src="https://github.com/4399SDKDev/4399LoginSDK/tree/master/Resource/loginsdk_architecture.png" alt="登录 SDK 授权步骤" />
+<img src="/Resource/loginsdk_architecture.png" alt="登录 SDK 授权步骤" />
 <p>
 <p>
 
@@ -201,7 +200,7 @@ web授权登录
 
 ###**附录三、自定义SDK界面风格**
 ---
-<img src="https://github.com/4399SDKDev/4399LoginSDK/tree/master/Resource/title_change_guider.png" alt="登录SDK的头部" />
+<img src="/Resource/title_change_guider.png" alt="登录SDK的头部" />
 
 登录SDK的头部一共有三张 9-patch 背景图片：
 图**红色**部分背景图为：
