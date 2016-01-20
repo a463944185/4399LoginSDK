@@ -38,6 +38,7 @@
 
 ###**接入登录SDK**
 ---
+
 #### **1.  初始化**
 建议在 **Appliction** 类的 onCreate 方法中进行初始化。
 
@@ -120,6 +121,7 @@ mOpeCenter.login(this, opeConfig, new OnLoginFinishedListener(){
 
 
 <p>
+
 ###**接入服务端接口**
 ---
 
@@ -174,8 +176,10 @@ web授权登录
 {"error" : "invalid_request" , "error_description" : "Code unauthorized"}
 ```
 <p>
+
 ###**附录一、登录SDK授权步骤**
 ---
+
 <p>
 <img src="/Resource/loginsdk_architecture.png" alt="登录 SDK 授权步骤" />
 <p>
@@ -183,6 +187,7 @@ web授权登录
 
 ###**附录二、登录接口结果码对照表**
 ---
+
 #### 登录授权成功
 >| 参数名 | 内容 |
 | :--: | :--: |
@@ -200,6 +205,7 @@ web授权登录
 
 ###**附录三、自定义SDK界面风格**
 ---
+
 <img src="/Resource/title_change_guider.png" alt="登录SDK的头部" />
 
 登录SDK的头部一共有三张 9-patch 背景图片：
@@ -208,6 +214,7 @@ web授权登录
 
 图**蓝色**部分按钮背景图：
 > 按钮正常态：m4399loginsdk_9patch_title_btn_normal.9.png
+
 > 按钮选定态：m4399loginsdk_9patch_title_btn_active.9.png
 
 接入时可以对这些图片进行替换以达到更改背景的目的。
