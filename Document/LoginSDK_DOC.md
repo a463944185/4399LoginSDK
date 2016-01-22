@@ -67,9 +67,9 @@ public class AppDemo extends Application{
         mOpeCenter.init(getApplicationContext(), opeConfig);
                 
         // 进行sdk初始化（接口二）（有效防止进程被杀而导致的游戏盒无法授权登录 推荐使用）
-        mOpeCenter.init(getApplicationContext(), opeConfig, new OnLoginFinishedListener(){
-                @Override
-                public void onLoginFinished(SDKResult result) {
+        mOpeCenter.init(getApplicationContext(), opeConfig,  new OperateCenter.ValidateListener(){
+               @Override
+               public void onValidateFinished(SDKResult result) {
                     Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
                 }
         });
@@ -95,9 +95,9 @@ class SDKResult {
 #### **2.  注册**
 ```java
 // 注册接口一经调用，无论原先是否已经登录一律清除原有登录信息，重新进行注册并且登录步骤。
-mOpeCenter.register(this, opeConfig, new OnLoginFinishedListener(){
+mOpeCenter.register(this, opeConfig, new OperateCenter.ValidateListener(){
                 @Override
-                public void onLoginFinished(SDKResult result) {
+                public void onValidateFinished(SDKResult result) {
                     Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
                 }
         });
@@ -105,9 +105,9 @@ mOpeCenter.register(this, opeConfig, new OnLoginFinishedListener(){
 #### **3.  登录**
 ```java
 // 注册接口一经调用，无论原先是否已经登录一律清除原有登录信息，重新进行注册并且登录步骤。
-mOpeCenter.login(this, opeConfig, new OnLoginFinishedListener(){
+mOpeCenter.login(this, opeConfig, new OperateCenter.ValidateListener(){
                 @Override
-                public void onLoginFinished(SDKResult result) {
+                public void onValidateFinished(SDKResult result) {
                     Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
                 }
         });
@@ -119,6 +119,16 @@ mOpeCenter.login(this, opeConfig, new OnLoginFinishedListener(){
         mOpeCenter.recordAccountName(String accountName);
 ```
 
+#### **5. 调用结果回调**
+
+```java
+    public interface ValidateListener {
+        /**
+         * @param result   用户验证结果
+         */
+        public void onValidateFinished(SDKResult result);
+    }
+```
 
 <p>
 
