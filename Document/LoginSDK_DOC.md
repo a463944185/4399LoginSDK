@@ -2,7 +2,8 @@
 ---
 | 版本号 | 时间 | 修改人 | 修改内容 |
 | :--: | :--: | :--: | :--: |
-| 1.2.0.0 | 2016-01-06 |   Y.J.Zhou   | 发布新登录sdk版本|
+| 1.2.0.0 | 2016-01-06 |   Y.J.Zhou   | 发布新登录sdk版本 |
+| 1.2.0.1 | 2016-01-15 |   Y.J.Zhou   | 为配置增加redirect_url接口 |
 
 <p>
 <p>
@@ -45,6 +46,8 @@
 
 ```java
 public class AppDemo extends Application{
+
+    final String AUTH_CALLBACK = "http://ptlogin.3304399.net/resource/images/ptlogin_mask.png";
     @Override
     public void onCreate() {   
         super.onCreate();
@@ -54,8 +57,10 @@ public class AppDemo extends Application{
         OperateConfig opeConfig = new OperateConfig.Builder()      
                 // 登陆界面横竖屏配置（ 当使用游戏盒授权时，登陆强制为竖屏 ）（ 必填 ）
                 .setOrientation(SCREEN_ORIENTATION) 
-                // app在用户中心分配的 id （ 必填 ）第一次接入的 APP 可自行向 4399用户中心（厦门）申请
+                // app在用户中心分配的 client_id （ 必填 ）第一次接入的 APP 可自行向 4399用户中心（厦门）申请
                 .setClientID("testNet") 
+                // app在用户中心分配的 client_id 所对应的 redirect_url
+                .setRedirectUrl(AUTH_CALLBACK) 
                 // app在游戏盒分配的 id （非必填 默认自动填充为clientid ）
                 .setGameID("testNet")
                 // 是否全屏显示登录界面 （ 选填 ）
