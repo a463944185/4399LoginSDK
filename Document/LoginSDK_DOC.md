@@ -198,14 +198,14 @@ web授权登录
 ---
 
 #### 登录授权成功
->| 参数名 | 内容 |
+>| Result_code | Result_msg |
 | :--: | :--: |
 | 0x000| Web 登录返回 **AuthCode** 码 |
 | 0x001| Web 注册返回 **AuthCode** 码 |
 | 0x002| 游戏盒授权返回 **Refresh_Code** 与 **UID** |
 
 #### 登录授权失败
->| 参数名 | 内容 |
+>| Result_code | Result_msg |
 | :--: | :--: |
 | 0x101| 网页登录网络异常 |
 | 0x102| 网页注册网络异常 |
