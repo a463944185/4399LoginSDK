@@ -138,7 +138,7 @@ mOpeCenter.login(this, opeConfig, new OperateCenter.ValidateListener(){
 ####**1. 服务端接口与参数**
 <p>
 web授权登录
-> 接口 ：**POST** https://ptlogin.4399.com/oauth2/token.do
+> **POST** https://ptlogin.4399.com/oauth2/token.do
 <p>
 
 >| 参数名 | 内容 |
@@ -150,8 +150,7 @@ web授权登录
 
 <p>
 游戏盒授权登录
-> 接口 ：**POST** https://ptlogin.4399.com/oauth2/token.do
-
+> **POST** https://ptlogin.4399.com/oauth2/token.do
 <p>
 
 >| 参数名 | 内容 |
