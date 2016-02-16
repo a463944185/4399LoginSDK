@@ -2,22 +2,21 @@
 ---
 | 版本号 | 时间 | 修改人 | 修改内容 |
 | :--: | :--: | :--: | :--: |
-| 1.2.0.0 | 2016-01-06 |   Y.J.Zhou   | 发布新登录sdk版本|
+| 1.2.0.0 | 2016-01-06 |   Y.J.Zhou   | 发布新登录sdk版本 |
+| 1.2.0.1 | 2016-01-15 |   Y.J.Zhou   | 为配置增加redirect_url接口 |
 
 <p>
 <p>
+
 ###**目录**
-  [1、导入库与资源](#导入库与资源)  
-  [2、接入登录SDK](#接入登录SDK)  
-  [3、接入服务端接口](#接入服务端接口)  
-  [4、记录网页登录历史用户名](#记录网页登录历史用户名)
-  
-<p>
-[附录一、登录SDK授权步骤](#附录一、登录SDK授权步骤)
-[附录二、登录接口结果码对照表](#附录二、登录接口结果码对照表)
-[附录三、自定义SDK界面风格](#附录三、自定义SDK界面风格)
-<p>
-<p>
+---
+&nbsp;&nbsp;&nbsp;&nbsp;[1、导入库与资源](#导入库与资源)  
+&nbsp;&nbsp;&nbsp;&nbsp;[2、接入登录SDK](#接入登录SDK)  
+&nbsp;&nbsp;&nbsp;&nbsp;[3、接入服务端接口](#接入服务端接口)  
+&nbsp;&nbsp;[附录一、登录SDK授权步骤](#附录一、登录SDK授权步骤)  
+&nbsp;&nbsp;[附录二、登录接口结果码对照表](#附录二、登录接口结果码对照表)  
+&nbsp;&nbsp;[附录三、自定义SDK界面风格](#附录三、自定义SDK界面风格)  
+
 
 ###**导入库与资源**
 ---
@@ -40,12 +39,15 @@
 
 ###**接入登录SDK**
 ---
+
 #### **1.  初始化**
 建议在 **Appliction** 类的 onCreate 方法中进行初始化。
 
 
 ```java
 public class AppDemo extends Application{
+
+    final String AUTH_CALLBACK = "http://ptlogin.3304399.net/resource/images/ptlogin_mask.png";
     @Override
     public void onCreate() {   
         super.onCreate();
@@ -55,8 +57,10 @@ public class AppDemo extends Application{
         OperateConfig opeConfig = new OperateConfig.Builder()      
                 // 登陆界面横竖屏配置（ 当使用游戏盒授权时，登陆强制为竖屏 ）（ 必填 ）
                 .setOrientation(SCREEN_ORIENTATION) 
-                // app在用户中心分配的 id （ 必填 ）第一次接入的 APP 可自行向 4399用户中心（厦门）申请
+                // app在用户中心分配的 client_id （ 必填 ）第一次接入的 APP 可自行向 4399用户中心（厦门）申请
                 .setClientID("testNet") 
+                // app在用户中心分配的 client_id 所对应的 redirect_url
+                .setRedirectUrl(AUTH_CALLBACK) 
                 // app在游戏盒分配的 id （非必填 默认自动填充为clientid ）
                 .setGameID("testNet")
                 // 是否全屏显示登录界面 （ 选填 ）
@@ -68,9 +72,9 @@ public class AppDemo extends Application{
         mOpeCenter.init(getApplicationContext(), opeConfig);
                 
         // 进行sdk初始化（接口二）（有效防止进程被杀而导致的游戏盒无法授权登录 推荐使用）
-        mOpeCenter.init(getApplicationContext(), opeConfig, new OnLoginFinishedListener(){
-                @Override
-                public void onLoginFinished(SDKResult result) {
+        mOpeCenter.init(getApplicationContext(), opeConfig,  new OperateCenter.ValidateListener(){
+               @Override
+               public void onValidateFinished(SDKResult result) {
                     Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
                 }
         });
@@ -96,9 +100,9 @@ class SDKResult {
 #### **2.  注册**
 ```java
 // 注册接口一经调用，无论原先是否已经登录一律清除原有登录信息，重新进行注册并且登录步骤。
-mOpeCenter.register(this, opeConfig, new OnLoginFinishedListener(){
+mOpeCenter.register(this, opeConfig, new OperateCenter.ValidateListener(){
                 @Override
-                public void onLoginFinished(SDKResult result) {
+                public void onValidateFinished(SDKResult result) {
                     Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
                 }
         });
@@ -106,42 +110,53 @@ mOpeCenter.register(this, opeConfig, new OnLoginFinishedListener(){
 #### **3.  登录**
 ```java
 // 注册接口一经调用，无论原先是否已经登录一律清除原有登录信息，重新进行注册并且登录步骤。
-mOpeCenter.login(this, opeConfig, new OnLoginFinishedListener(){
+mOpeCenter.login(this, opeConfig, new OperateCenter.ValidateListener(){
                 @Override
-                public void onLoginFinished(SDKResult result) {
+                public void onValidateFinished(SDKResult result) {
                     Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
                 }
         });
 ```
 
-#### **4.  记录网页登录历史用户名**
+#### **4. 记录网页登录历史用户名**
 
 ```java
         mOpeCenter.recordAccountName(String accountName);
 ```
 
+#### **5. 调用结果回调**
+
+```java
+    public interface ValidateListener {
+        /**
+         * @param result   用户验证结果
+         */
+        public void onValidateFinished(SDKResult result);
+    }
+```
 
 <p>
+
 ###**接入服务端接口**
 ---
 
 ####**1. 服务端接口与参数**
 <p>
 web授权登录
-> 接口 ： https://ptlogin.4399.com/oauth2/token.do
+> **POST** https://ptlogin.4399.com/oauth2/token.do
 <p>
 
 >| 参数名 | 内容 |
 | :--: | :--: |
 | grant_type=AUTHORIZATION_CODE | （固定字段） |
-| client_id| 用户中心分配的 client_id |
-| client_secret| 用户中心分配的 secret |
-| code| Web登录获取到的 **AuthCode** |
+| client_id | 用户中心分配的 client_id |
+| redirect_url | 用户中心分配的 redirect_url |
+| client_secret | 用户中心分配的 secret |
+| code | Web登录获取到的 **AuthCode** |
 
 <p>
 游戏盒授权登录
-> 接口 ： https://ptlogin.4399.com/oauth2/token.do
-
+> **POST** https://ptlogin.4399.com/oauth2/token.do
 <p>
 
 >| 参数名 | 内容 |
@@ -176,24 +191,27 @@ web授权登录
 {"error" : "invalid_request" , "error_description" : "Code unauthorized"}
 ```
 <p>
+
 ###**附录一、登录SDK授权步骤**
 ---
+
 <p>
-![登录 SDK 授权步骤](leanote://file/getImage?fileId=569c5f28f0241b5cff000001)
+<img src="/Resource/loginsdk_architecture.png" alt="登录 SDK 授权步骤" />
 <p>
 <p>
 
 ###**附录二、登录接口结果码对照表**
 ---
+
 #### 登录授权成功
->| 参数名 | 内容 |
+>| Result_code | Result_msg |
 | :--: | :--: |
 | 0x000| Web 登录返回 **AuthCode** 码 |
 | 0x001| Web 注册返回 **AuthCode** 码 |
 | 0x002| 游戏盒授权返回 **Refresh_Code** 与 **UID** |
 
 #### 登录授权失败
->| 参数名 | 内容 |
+>| Result_code | Result_msg |
 | :--: | :--: |
 | 0x101| 网页登录网络异常 |
 | 0x102| 网页注册网络异常 |
@@ -203,7 +221,7 @@ web授权登录
 ###**附录三、自定义SDK界面风格**
 ---
 
-![登录SDK的头部](http://note.youdao.com/yws/api/group/9433544/noteresource/DA2B9BC61C884DF2982B5A8E2FFEEB68/version/131?method=get-resource&shareToken=C92957739014450CAB3188E43B5423C4&entryId=78899627)
+<img src="/Resource/title_change_guider.png" alt="登录SDK的头部" />
 
 登录SDK的头部一共有三张 9-patch 背景图片：
 图**红色**部分背景图为：
@@ -211,6 +229,7 @@ web授权登录
 
 图**蓝色**部分按钮背景图：
 > 按钮正常态：m4399loginsdk_9patch_title_btn_normal.9.png
+
 > 按钮选定态：m4399loginsdk_9patch_title_btn_active.9.png
 
 接入时可以对这些图片进行替换以达到更改背景的目的。
