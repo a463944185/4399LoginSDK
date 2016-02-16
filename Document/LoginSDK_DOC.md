@@ -149,9 +149,10 @@ web授权登录
 >| 参数名 | 内容 |
 | :--: | :--: |
 | grant_type=AUTHORIZATION_CODE | （固定字段） |
-| client_id| 用户中心分配的 client_id |
-| client_secret| 用户中心分配的 secret |
-| code| Web登录获取到的 **AuthCode** |
+| client_id | 用户中心分配的 client_id |
+| redirect_url | 用户中心分配的 redirect_url |
+| client_secret | 用户中心分配的 secret |
+| code | Web登录获取到的 **AuthCode** |
 
 <p>
 游戏盒授权登录
