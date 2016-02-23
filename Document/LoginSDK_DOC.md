@@ -150,7 +150,7 @@ web授权登录
 | :--: | :--: |
 | grant_type=AUTHORIZATION_CODE | （固定字段） |
 | client_id | 用户中心分配的 client_id |
-| redirect_url | 用户中心分配的 redirect_url |
+| redirect_uri | 用户中心分配的 redirect_url |
 | client_secret | 用户中心分配的 secret |
 | code | Web登录获取到的 **AuthCode** |
 
@@ -163,9 +163,10 @@ web授权登录
 | :--: | :--: |
 | grant_type=REFRESH_TOKEN | （固定字段） |
 | client_id| 用户中心分配的 client_id |
+| redirect_uri | 用户中心分配的 redirect_url |
 | client_secret| 用户中心分配的 secret |
 | UID | SDK 返回的 UID |
-| Refresh_token | 游戏盒授权登录获取到的 **Refresh_token** |
+| refresh_token | 游戏盒授权登录获取到的 **Refresh_token** |
 
 ####**2.  服务端成功响应**
 <p>
