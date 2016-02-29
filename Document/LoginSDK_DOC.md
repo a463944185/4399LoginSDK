@@ -185,6 +185,7 @@ web授权登录
 
 
 | client_id | 用户中心分配的 client_id |
+<<<<<<< HEAD
 | --------- | ----------------- |
 |           |                   |
 
@@ -196,6 +197,9 @@ web授权登录
 
 
 
+=======
+| redirect_uri | 用户中心分配的 redirect_url |
+>>>>>>> 91eadf8f41acbc9a92ff42c582487cef6db9a337
 | client_secret | 用户中心分配的 secret |
 | ------------- | -------------- |
 |               |                |
@@ -229,6 +233,7 @@ web授权登录
 
 
 | grant_type=REFRESH_TOKEN | （固定字段） |
+<<<<<<< HEAD
 | ------------------------ | ------ |
 |                          |        |
 
@@ -259,6 +264,13 @@ web授权登录
 
 
 #### **2.  服务端成功响应**
+=======
+| client_id| 用户中心分配的 client_id |
+| redirect_uri | 用户中心分配的 redirect_url |
+| client_secret| 用户中心分配的 secret |
+| UID | SDK 返回的 UID |
+| refresh_token | 游戏盒授权登录获取到的 **Refresh_token** |
+>>>>>>> 91eadf8f41acbc9a92ff42c582487cef6db9a337
 
 <p>
 
