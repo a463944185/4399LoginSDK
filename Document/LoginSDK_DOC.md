@@ -37,17 +37,17 @@
    
    ``` xml
    < activity
-   android :name= "cn.m4399.operate.controller.OpeHostActivity"
-   android :configChanges= "orientation|screenSize|keyboardHidden"
-   android :launchMode= "singleTask" />
+   android:name="cn.m4399.operate.controller.OpeHostActivity"
+   android:configChanges="orientation|screenSize|keyboardHidden"
+   android:launchMode="singleTask" />
    ```
    
 4. 在工程AndroidManifest.xml 中加入权限
    
    ``` xml
-   < uses-permission android :name= "android.permission.INTERNET" />
-   < uses-permission android :name= "android.permission.READ_PHONE_STATE" />
-   < uses-permission android :name= "android.permission.ACCESS_NETWORK_STATE" />
+   < uses-permission android:name="android.permission.INTERNET" />
+   < uses-permission android:name="android.permission.READ_PHONE_STATE" />
+   < uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    ```
 
 ## **接入登录SDK**
