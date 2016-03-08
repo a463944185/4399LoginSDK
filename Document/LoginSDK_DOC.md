@@ -193,15 +193,6 @@ web授权登录
 
 #### **2.  服务端成功响应**
 =======
-> | 参数名  | 内容   |
-| ---- | ---- |
-| client_id| 用户中心分配的 client_id |
-| redirect_uri | 用户中心分配的 redirect_url |
-| client_secret| 用户中心分配的 secret |
-| UID | SDK 返回的 UID |
-| refresh_token | 游戏盒授权登录获取到的 **Refresh_token** |
-
-<p>
 
 > | 参数名  | 内容   |
 | ---- | ---- |
