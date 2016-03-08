@@ -193,6 +193,8 @@ web授权登录
 
 #### **2.  服务端成功响应**
 =======
+> | 参数名  | 内容   |
+| ---- | ---- |
 | client_id| 用户中心分配的 client_id |
 | redirect_uri | 用户中心分配的 redirect_url |
 | client_secret| 用户中心分配的 secret |
