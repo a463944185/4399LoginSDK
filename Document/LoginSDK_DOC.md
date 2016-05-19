@@ -164,7 +164,7 @@ mOpeCenter.login(this, opeConfig, new OperateCenter.ValidateListener(){
 
 web授权登录
 
-> **POST** https://ptlogin.4399.com/oauth2/token.do
+> **GET** https://ptlogin.4399.com/oauth2/token.do
 
 <p>
 
@@ -172,7 +172,7 @@ web授权登录
 | ---- | ---- |
 | grant_type=AUTHORIZATION_CODE | （固定字段） |
 | client_id | 用户中心分配的 client_id |
-| redirect_url | 用户中心分配的 redirect_url |
+| redirect_uri | 用户中心分配的 redirect_uri |
 | client_secret | 用户中心分配的 secret |
 | code | Web登录获取到的 **AuthCode** |
 <p>
@@ -188,6 +188,7 @@ web授权登录
 | grant_type=REFRESH_TOKEN | （固定字段） |
 | client_id | 用户中心分配的 client_id |
 | client_secret | 用户中心分配的 secret |
+| redirect_uri | 用户中心分配的 redirect_uri |
 | UID  | SDK 返回的 UID |
 | Refresh_token | 游戏盒授权登录获取到的 **Refresh_token** |
 
