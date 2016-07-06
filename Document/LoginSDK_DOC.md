@@ -1,4 +1,4 @@
-## **修改记录**
+﻿## **修改记录**
 
 |   版本号   |     时间     |   修改人    |        修改内容         |
 | :-----: | :--------: | :------: | :-----------------: |
@@ -74,7 +74,7 @@ public class AppDemo extends Application{
                 .setOrientation(SCREEN_ORIENTATION) 
                 // app在用户中心分配的 client_id （ 必填 ）第一次接入的 APP 可自行向 4399用户中心（厦门）申请
                 .setClientID("testNet") 
-                // app在用户中心分配的 client_id 所对应的 redirect_url
+                // app在用户中心分配的 client_id 所对应的 redirect_url（ 必填 ）
                 .setRedirectUrl(AUTH_CALLBACK) 
                 // app在游戏盒分配的 id （非必填 默认自动填充为clientid ）
                 .setGameID("testNet")

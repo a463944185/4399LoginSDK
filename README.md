@@ -8,7 +8,7 @@
 
 
 
-* [v1.2.2](https://github.com/4399SDKDev/4399LoginSDK/blob/master/m4399LoginSDK.rar) **(2016-05-17)**
+* [v1.2.4](https://github.com/4399SDKDev/4399LoginSDK/blob/master/m4399LoginSDKv1.2.4.rar) **(2016-07-06)**
 
 
 
